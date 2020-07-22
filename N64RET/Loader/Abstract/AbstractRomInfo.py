@@ -21,3 +21,11 @@ class AbstractRomInfo(ABC):
     @abstractmethod
     def getRomFilename(self):
         pass
+
+    @abstractmethod
+    def getContents(self):
+        pass
+    
+    @abstractmethod
+    def readAtOffset(self, offset : int, length : int):
+        pass

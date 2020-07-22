@@ -30,3 +30,25 @@ class RomInfo(AbstractRomInfo):
     
     def getRomFilename(self):
         return self._inputPath
+
+    def getContents(self):
+        if not self._inputHandle:
+            print("[RomInfo.getContents]: File not open")
+        
+        currentOffset = self._inputHandle.tell()
+        
+        self._inputHandle.seek(0)
+        inputContents = self._inputHandle.read()
+        self._inputHandle.seek(currentOffset)
+
+        return inputContents
+
+    def readAtOffset(self, offset : int, length : int):
+        if not self._inputHandle:
+            print("[RomInfo.getContents]: File not open")
+        
+        self._inputHandle.seek(offset)
+        inputContents = self._inputHandle.read(length)
+
+        return inputContents
+
