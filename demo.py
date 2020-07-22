@@ -17,6 +17,8 @@ def main():
     print("CODE repr: " + repr(codeBinary[:0x10]))
     print("CODE Length: " + hex(len(codeBinary)))
 
+    entrypoint = romClass.getEntrypoint()
+    print("Entrypoint: " + hex(entrypoint))
     print("RomClose: " + str(romClass.romClose()))
 
 if __name__ == "__main__":

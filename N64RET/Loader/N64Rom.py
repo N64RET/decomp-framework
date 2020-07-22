@@ -1,3 +1,4 @@
+import struct
 from N64RET.Loader.RomInfo import RomInfo
 
 class N64Rom(RomInfo):
@@ -17,3 +18,11 @@ class N64Rom(RomInfo):
 
     def getCodeContents(self):
         return self.readAtOffset(self.getCodeOffset(), self.getCodeSize())
+
+    def getEntrypoint(self):
+        # TODO: Defines
+        return struct.unpack(">I", self.readAtOffset(8, 4))[0]
+
+    def getEntrypointRelocated(self):
+        # TODO: Implement via CIC/IPL Variant
+        return self.getEntrypoint()
