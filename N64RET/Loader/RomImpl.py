@@ -45,7 +45,7 @@ class RomImpl(RomInterface):
 
     def readAtOffset(self, offset : int, length : int):
         if not self._inputHandle:
-            print("[RomInfo.getContents]: File not open")
+            print("[RomInfo.readAtOffset]: File not open")
         
         self._inputHandle.seek(offset)
         inputContents = self._inputHandle.read(length)
