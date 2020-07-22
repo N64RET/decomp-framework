@@ -1,7 +1,7 @@
 import io
 from abc import ABC, abstractmethod, abstractproperty
 
-class AbstractRomInfo(ABC):
+class RomInterface(ABC):
     _inputPath : str
     _inputHandle : io.IOBase
 

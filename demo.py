@@ -1,4 +1,4 @@
-from N64RET.Loader.N64Rom import N64Rom
+from N64RET.Loader.N64.N64RomImpl import N64Rom
 
 def main():
     romClass = N64Rom("rom.z64")

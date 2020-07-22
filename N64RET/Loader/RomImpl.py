@@ -1,6 +1,6 @@
-from N64RET.Loader.Abstract.AbstractRomInfo import AbstractRomInfo
+from N64RET.Loader.Abstract.RomInterface import RomInterface
 
-class RomInfo(AbstractRomInfo):
+class RomImpl(RomInterface):
     def __init__(self, inputPath = ""):
         self._inputPath = inputPath
 
