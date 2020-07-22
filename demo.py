@@ -9,6 +9,14 @@ def main():
     print("Header repr: " + repr(headerBinary))
     print("Header Length: " + hex(len(headerBinary)))
 
+    ipl3Binary = romClass.getIPL3Contents()
+    print("IPL3 repr: " + repr(ipl3Binary[:0x10]))
+    print("IPL3 Length: " + hex(len(ipl3Binary)))
+
+    codeBinary = romClass.getCodeContents()
+    print("CODE repr: " + repr(codeBinary[:0x10]))
+    print("CODE Length: " + hex(len(codeBinary)))
+
     print("RomClose: " + str(romClass.romClose()))
 
 if __name__ == "__main__":
