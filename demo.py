@@ -1,4 +1,5 @@
 from N64RET.Loader.N64.N64RomImpl import N64Rom
+from N64RET.Generator.N64SplitConfigImpl import N64SplitConfig
 
 def main():
     romClass = N64Rom("rom.z64")
@@ -22,6 +23,10 @@ def main():
 
     entrypoint = romClass.getEntrypoint()
     print("Entrypoint: " + hex(entrypoint))
+
+    n64splitConfig = N64SplitConfig(romClass)
+    n64splitConfig.writeConfig("split.yaml")
+    
     print("RomClose: " + str(romClass.romClose()))
 
 if __name__ == "__main__":
