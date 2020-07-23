@@ -9,6 +9,9 @@ def main():
     print("Header repr: " + repr(headerBinary))
     print("Header Length: " + hex(len(headerBinary)))
 
+    headerStruct = romClass.getInternalHeader()
+    print("Header Struct repr: " + repr(headerStruct))
+    
     ipl3Binary = romClass.getIPL3Contents()
     print("IPL3 repr: " + repr(ipl3Binary[:0x10]))
     print("IPL3 Length: " + hex(len(ipl3Binary)))

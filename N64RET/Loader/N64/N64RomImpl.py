@@ -1,5 +1,6 @@
 import struct
 from N64RET.Loader.RomImpl import RomImpl
+from N64RET.Loader.N64.InternalHeaderStruct import InternalHeader
 
 class N64Rom(RomImpl):
     _INTERNAL_HEADER_SIZE : int = 0x40
@@ -19,9 +20,13 @@ class N64Rom(RomImpl):
     def getCodeContents(self):
         return self.readAtOffset(self.getCodeOffset(), self.getCodeSize())
 
+    def getInternalHeader(self):
+        # TODO: Cache header?
+        headerData = self.readAtOffset(0, self._INTERNAL_HEADER_SIZE)
+        return InternalHeader(headerData)
+    
     def getEntrypoint(self):
-        # TODO: Defines
-        return struct.unpack(">I", self.readAtOffset(8, 4))[0]
+        return self.getInternalHeader().Entrypoint
 
     def getEntrypointRelocated(self):
         # TODO: Implement via CIC/IPL Variant
