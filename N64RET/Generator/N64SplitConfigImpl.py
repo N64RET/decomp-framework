@@ -30,3 +30,5 @@ class N64SplitConfig(object):
         configHandle.write('  - [0x' + self.formatValueHex(self._romClass.getCodeOffset()) + ', 0x' + self.formatValueHex(self._romClass.getCodeOffset() + self._romClass.getCodeSize()) + ', "asm",    "CODE", 0x' + self.formatValueHex(self._romClass.getEntrypointRelocated()) + ']\n')
         configHandle.write('  - [0x' + self.formatValueHex(self._romClass.getCodeOffset() + self._romClass.getCodeSize()) + ', 0x' + self.formatValueHex(os.path.getsize(self._romClass.getRomFilename())) + ', "bin",    "bin_' + self.formatValueHex(self._romClass.getCodeOffset() + self._romClass.getCodeSize(), 6) + '"]\n')
         
+        configHandle.close()
+        return True
