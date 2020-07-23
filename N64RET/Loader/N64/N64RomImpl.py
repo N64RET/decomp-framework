@@ -1,5 +1,6 @@
 from N64RET.Loader.RomImpl import RomImpl
 from N64RET.Loader.N64.InternalHeaderStruct import InternalHeader
+
 class N64Rom(RomImpl):
     _INTERNAL_HEADER_SIZE : int = 0x40
     _IPL3_SEGMENT_END : int = 0x1000
