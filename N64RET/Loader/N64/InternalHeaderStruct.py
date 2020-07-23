@@ -1,11 +1,10 @@
 import cstruct
-from cstruct import define, typedef, CStruct
 from N64RET.CTypes.StandardTypesTypedefs import defineStandardCTypes
 
 # Setup Standard types
 defineStandardCTypes()
 
-class InternalHeader(CStruct):
+class InternalHeader(cstruct.CStruct):
     __byte_order__ = cstruct.BIG_ENDIAN
     __struct__ = """
         /* 0x00 */ u32 BSD_DOM1_CONFIG;
