@@ -1,3 +1,6 @@
+import os
+import N64RET.Processor.MIPSR.Disassembler.DisasmImpl as DisasmImpl
+
 from N64RET.Loader.N64.N64RomImpl import N64Rom
 from N64RET.Generator.N64SplitConfigImpl import N64SplitConfig
 
@@ -28,7 +31,21 @@ def main():
 
     n64splitConfig = N64SplitConfig(romClass)
     n64splitConfig.writeConfig("split.yaml")
+
+    dis = DisasmImpl.Disassembler()
+    dis.load_defaults()
+    dis.set_auto_analysis(True)
+
+    dis.files.append(dis.File("CODE", romClass.getCodeContents(), romClass.getEntrypointRelocated()))
+    dis.files = sorted(dis.files, key = lambda file: file.vaddr)
+    dis.reset_cache()
+    dis.add_data_region(0x800969C0, 0x8017FFFC, "CODE")
     
+    dis.first_pass()
+    os.makedirs("disasm/", exist_ok=True)
+    dis.second_pass("disasm/")
+    #dis.disassemble(args.disassemble)
+
     print("RomClose: " + str(romClass.romClose()))
 
 if __name__ == "__main__":

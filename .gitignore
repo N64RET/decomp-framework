@@ -4,3 +4,4 @@ __pycache__/
 *.z64
 *.n64
 *.yaml
+*.asm
