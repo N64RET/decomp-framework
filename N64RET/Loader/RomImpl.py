@@ -1,3 +1,4 @@
+import os
 from N64RET.Loader.Abstract.RomInterface import RomInterface
 
 class RomImpl(RomInterface):
@@ -30,6 +31,12 @@ class RomImpl(RomInterface):
     
     def getRomFilename(self):
         return self._inputPath
+
+    def getRomFilesize(self):
+        if self._inputPath:
+            return os.path.getsize(self._inputPath)
+        else:
+            return 0x0
 
     def getContents(self):
         if not self._inputHandle:

@@ -23,12 +23,14 @@ class N64SplitConfig(object):
         configHandle.write('ranges:\n')
         configHandle.write('  # start,       end,        type,     label\n')
 
-        # Basic pre-defined segments
-        # TODO: Segment API Iteration
-        configHandle.write('  - [0x00000000, 0x' + self.formatValueHex(self._romClass._INTERNAL_HEADER_SIZE, 8) + ', "header", "header"]\n')
-        configHandle.write('  - [0x' + self.formatValueHex(self._romClass._INTERNAL_HEADER_SIZE) + ', 0x' + self.formatValueHex(self._romClass._IPL3_SEGMENT_END) + ', "asm",    "IPL3", 0xA4000040]\n')
-        configHandle.write('  - [0x' + self.formatValueHex(self._romClass.getCodeOffset()) + ', 0x' + self.formatValueHex(self._romClass.getCodeOffset() + self._romClass.getCodeSize()) + ', "asm",    "CODE", 0x' + self.formatValueHex(self._romClass.getEntrypointRelocated()) + ']\n')
-        configHandle.write('  - [0x' + self.formatValueHex(self._romClass.getCodeOffset() + self._romClass.getCodeSize()) + ', 0x' + self.formatValueHex(os.path.getsize(self._romClass.getRomFilename())) + ', "bin",    "bin_' + self.formatValueHex(self._romClass.getCodeOffset() + self._romClass.getCodeSize(), 6) + '"]\n')
-        
+        # Iterate Segments
+        for segment in self._romClass.getSegments():
+            if segment.getSegmentType() is "INTERNAL_HEADER":
+                configHandle.write('  - [0x' + self.formatValueHex(segment.getSegmentStart(), 8) + ', 0x' + self.formatValueHex(segment.getSegmentEnd(), 8) + ', "header", "Header"]\n')
+            elif segment.getSegmentType() is "CODE":
+                configHandle.write('  - [0x' + self.formatValueHex(segment.getSegmentStart(), 8) + ', 0x' + self.formatValueHex(segment.getSegmentEnd(), 8) + ', "asm", "' + segment.getSegmentName() + '", 0x' + self.formatValueHex(segment.getSegmentVirtualAddress(), 8) + ']\n')
+            else:
+                configHandle.write('  - [0x' + self.formatValueHex(segment.getSegmentStart(), 8) + ', 0x' + self.formatValueHex(segment.getSegmentEnd(), 8) + ', "bin", "' + segment.getSegmentName() + '"]\n')
+
         configHandle.close()
         return True
