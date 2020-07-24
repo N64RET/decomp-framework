@@ -7,13 +7,15 @@ class N64Rom(RomImpl):
     _CODE_SEGMENT_STANDARD_SIZE : int = 0x100000
 
     def romOpen(self, inputPath = ""):
-        super().romOpen(inputPath)
+        returnValue = super().romOpen(inputPath)
         
         # Setup Base segments
         self.addSegment(0, self._INTERNAL_HEADER_SIZE, "INTERNAL_HEADER", 0x0, "HEADER")
         self.addSegment(self._INTERNAL_HEADER_SIZE, self._IPL3_SEGMENT_END, "CODE", 0xA4000040, "IPL3")
         self.addSegment(self.getCodeOffset(), self.getCodeOffset() + self.getCodeSize(), "CODE", self.getEntrypointRelocated(), "CODE")
         self.addSegment(self.getCodeOffset() + self.getCodeSize(), self.getRomFilesize(), "DATA", 0x0, "ROM_GAP")
+        
+        return returnValue
 
     def getIPL3Contents(self):
         return self.readAtOffset(self._INTERNAL_HEADER_SIZE, self._IPL3_SEGMENT_END - self._INTERNAL_HEADER_SIZE)
