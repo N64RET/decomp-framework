@@ -36,15 +36,19 @@ def main():
     dis.load_defaults()
     dis.set_auto_analysis(True)
 
+    f = open("code_original.bin", "wb+")
+    f.write(romClass.getCodeContents())
+    f.close()
+
     dis.files.append(dis.File("CODE", romClass.getCodeContents(), romClass.getEntrypointRelocated()))
     dis.files = sorted(dis.files, key = lambda file: file.vaddr)
     dis.reset_cache()
-    dis.add_data_region(0x800969C0, 0x8017FFFC, "CODE")
+    #dis.add_data_region(0x80000450, 0x800028C0, "CODE")
     
     dis.first_pass()
     os.makedirs("disasm/", exist_ok=True)
     dis.second_pass("disasm/")
-    #dis.disassemble(args.disassemble)
+    dis.generate_undefined("disasm/")
 
     print("RomClose: " + str(romClass.romClose()))
 
