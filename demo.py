@@ -23,6 +23,8 @@ def main():
 
     entrypoint = romClass.getEntrypoint()
     print("Entrypoint: " + hex(entrypoint))
+    entrypoint = romClass.getEntrypointRelocated()
+    print("Entrypoint (Relocated): " + hex(entrypoint))
 
     n64splitConfig = N64SplitConfig(romClass)
     n64splitConfig.writeConfig("split.yaml")
