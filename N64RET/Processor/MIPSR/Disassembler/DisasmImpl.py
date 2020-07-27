@@ -1,6 +1,6 @@
 import argparse, os, struct, ast, bisect
 
-SPLIT_FILES = False # TODO this should be a flag somewhere
+SPLIT_FILES = True # TODO this should be a flag somewhere
 
 loadHighRefs = {}
 loadLowRefs = {}
@@ -24,8 +24,8 @@ ops = {
     24:"daddi", 25:"daddiu",
     32:"lb", 33:"lh", 34:"lwl", 35:"lw", 36:"lbu", 37:"lhu", 38:"lwr",
     40:"sb", 41:"sh", 42:"swl", 43:"sw", 46:"swr", 47:"cache",
-    49:"lwc1", 55:"ld", #51:"pref" 48:"ll" 50:"lwc2" 53:"ldc1" 54:"ldc2"
-    57:"swc1", 61:"sdc1", 63:"sd", #56:"sc" 58:"swc2" 62:"sdc2"
+    49:"lwc1", 55:"ld", 51:"pref", 48:"ll", 50:"lwc2", 53:"ldc1", 54:"ldc2",
+    57:"swc1", 61:"sdc1", 63:"sd", 56:"sc", 58:"swc2", 62:"sdc2"
     }
 
 funcs = {
@@ -35,7 +35,7 @@ funcs = {
     24:"mult", 25:"multu", 26:"div", 27:"divu", 28:"dmult", 29:"dmultu", 30:"ddiv", 31:"ddivu",
     32:"add", 33:"addu", 34:"sub", 35:"subu", 36:"and", 37:"or", 38:"xor", 39:"nor",
     42:"slt", 43:"sltu", 44:"dadd", 45:"daddu",
-    48:"tge", 49:"tgeu", 50:"tlt", 52:"teq", 54:"tne", #51:"tltu"
+    48:"tge", 49:"tgeu", 50:"tlt", 52:"teq", 54:"tne", 51:"tltu",
     56:"dsll", 59:"dsra", 60:"dsll32", 63:"dsra32",
     }
 
