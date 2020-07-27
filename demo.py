@@ -43,12 +43,14 @@ def main():
     dis.files.append(dis.File("CODE", romClass.getCodeContents(), romClass.getEntrypointRelocated()))
     dis.files = sorted(dis.files, key = lambda file: file.vaddr)
     dis.reset_cache()
-    #dis.add_data_region(0x80000450, 0x800028C0, "CODE")
+    #dis.add_data_region(0x800731A0, 0x80125BFC, "CODE")
+    #dis.add_bss_region(0x8009A5B0, 0x8009A5B0 + 0x41F50, "CODE")
     
     dis.first_pass()
     os.makedirs("disasm/", exist_ok=True)
     dis.second_pass("disasm/")
     dis.generate_undefined("disasm/")
+    dis.generate_headers("disasm/")
 
     print("RomClose: " + str(romClass.romClose()))
 
