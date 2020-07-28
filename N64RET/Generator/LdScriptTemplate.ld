@@ -28,7 +28,9 @@ SECTIONS
     CODE : AT(RomLocation)
     {
         CODE_text_start = .;
-        build/src/CODE.o(.text)
+        %for objectFile in CODE_OBJECT_DEFINITIONS:
+        ${objectFile}
+        %endfor
         CODE_text_end = .;
     }
     SegmentEnd = .;

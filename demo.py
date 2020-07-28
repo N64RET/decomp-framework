@@ -42,7 +42,7 @@ def main():
     f.close()
 
     dis.files.append(dis.File("INTERNAL_HEADER", romClass.readAtOffset(0, romClass._INTERNAL_HEADER_SIZE), 0xA4000000))
-    #dis.add_data_region(0xA4000000, 0xA400003F, "INTERNAL_HEADER")
+    dis.add_data_region(0xA4000000, 0xA400003F, "INTERNAL_HEADER")
 
     ipl3Binary = romClass.getIPL3Contents()
     dis.files.append(dis.File("IPL3", ipl3Binary, 0xA4000040))
@@ -66,8 +66,8 @@ def main():
     f.write(romClass.readAtOffset(romClass.getCodeOffset() + romClass.getCodeSize(), romClass.getRomFilesize() - romClass.getCodeOffset() - romClass.getCodeSize()))
     f.close()
 
-    #ldScript = LdScript(romClass)
-    #ldScript.writeScript("src/linker_script.ld", 0x8009A5B0)
+    ldScript = LdScript(romClass)
+    ldScript.writeScript("src/linker_script.ld", dis, 0x8009A5B0)
 
     print("RomClose: " + str(romClass.romClose()))
 
