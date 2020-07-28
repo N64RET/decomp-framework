@@ -979,6 +979,10 @@ class Disassembler:
                     f.write("%s = %s_bss_start + 0x%08X;\n" % (self.make_load(addr), region[2], addr - region[0]))
                 elif not self.is_in_data(addr):
                     f.write("%s = 0x%08X;\n" % (self.make_load(addr), addr))
+        
+        with open(path + "/undef_funcs.txt", 'w', newline='\n') as f:
+            for addr in sorted(self.functions):
+                f.write("%s = 0x%08X;\n" % (get_func_name(addr), addr))
 
 # TODO -a --analyze flag? Only when its set will new symbols be added, otherwise use only the supplied ones
 def disassemble():

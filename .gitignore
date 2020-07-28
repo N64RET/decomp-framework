@@ -5,3 +5,7 @@ __pycache__/
 *.n64
 *.yaml
 *.asm
+expected/
+src/
+*.bin
+*.map
