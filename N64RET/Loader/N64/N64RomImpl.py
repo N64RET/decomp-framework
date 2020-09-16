@@ -49,7 +49,6 @@ class N64Rom(RomImpl):
         return self.getInternalHeader().Entrypoint
 
     def getEntrypointRelocated(self):
-        # TODO: Implement via CIC/IPL Variant
         CIC = self.getCIC()
         return self.getEntrypoint() - CIC["Offset"]
 
