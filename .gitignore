@@ -9,3 +9,4 @@ expected/
 src/
 *.bin
 *.map
+*.egg-info/
