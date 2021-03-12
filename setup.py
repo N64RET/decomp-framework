@@ -5,7 +5,7 @@ with open("./README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="decomp-framework",
-    version="0.0.1",
+    version="0.0.2",
     author="M4xw",
     author_email="m4x@m4xw.net",
     description="N64 Reverse Engineering Toolkit",
