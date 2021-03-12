@@ -17,7 +17,7 @@ setuptools.setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Beerware License",
+        "License :: OSI Approved",
         "Operating System :: OS Independent",
     ],
     install_requires=["cstruct", "Mako", "MarkupSafe"],
