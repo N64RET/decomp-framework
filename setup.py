@@ -20,6 +20,7 @@ setuptools.setup(
         "License :: OSI Approved :: Beerware License",
         "Operating System :: OS Independent",
     ],
+    install_requires=["cstruct", "Mako", "MarkupSafe"],
     packages=setuptools.find_packages(),
     python_requires=">=3.0",
 )
